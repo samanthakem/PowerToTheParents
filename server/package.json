@@ -1,0 +1,14 @@
+{
+    "name": "PowerToTheParents",
+    "description": "This is a application made during the Intel Hackaton #IoT",
+    "version": "0.0.0",
+    "main": "server.js",
+    "engines": {
+        "node": ">=0.10.0"
+    },
+    "dependencies": {
+        "socket.io": "latest",
+        "express": "latest",
+        "mraa": "latest"
+    },
+}

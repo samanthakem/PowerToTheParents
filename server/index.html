@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io("http://192.168.0.43:3700");
+            
+            socket.on("ask", function(message) {
+                var ask = message["ask"];
+                document.getElementById("message").innerHTML = ask;
+            });
+            
+            function on() { 
+                socket.emit("on", {status: "The light is on"});
+            }
+            function off() {
+                socket.emit("off", {status: "The light is off"});
+            }
+        </script>
+    </head>
+    <body>
+        <div id="message"></div>
+        <button id="on" onClick = "on()">Turn On</button>
+        <button id="on" onClick = "off()">Turn Off</button>
+    </body>
+</html>
