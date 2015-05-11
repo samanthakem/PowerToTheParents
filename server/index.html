@@ -1,25 +1,62 @@
-<html>
-    <head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Power To Parents</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <!-- Bootstrap -->
+    <link href="bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
         <script src="/socket.io/socket.io.js"></script>
-        <script>
-            var socket = io("http://192.168.0.43:3700");
-            
-            socket.on("ask", function(message) {
-                var ask = message["ask"];
-                document.getElementById("message").innerHTML = ask;
-            });
-            
-            function on() { 
-                socket.emit("on", {status: "The light is on"});
-            }
-            function off() {
-                socket.emit("off", {status: "The light is off"});
-            }
-        </script>
-    </head>
-    <body>
-        <div id="message"></div>
-        <button id="on" onClick = "on()">Turn On</button>
-        <button id="on" onClick = "off()">Turn Off</button>
-    </body>
+
+  </head>
+  <body>
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Power To Parents - Hair Clipper</a>
+          </div>
+        </div><!--/.container-fluid -->
+      </nav>
+
+      <div class="container">
+        <div class="row">
+          <button id = "yes" type="button" class="btn btn-default btn-xlarge">
+            Yes
+          </button>
+          <button id = "no" type="button" class="btn btn-default btn-xlarge">
+            No
+          </button>
+        </div>
+      </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap-3.3.4/js/bootstrap.min.js"></script>
+      <script>
+      var socket = io("http://192.168.0.40:3700")
+      $("#yes").click(function() {
+          socket.emit("yes", {button: 0});
+      });
+      $("#no").click(function() {
+          socket.emit("no", {button: 0});
+      });
+      </script>
+
+
+  </body>
 </html>

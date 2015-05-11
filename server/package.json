@@ -9,6 +9,7 @@
     "dependencies": {
         "socket.io": "latest",
         "express": "latest",
-        "mraa": "latest"
+        "mraa": "latest",
+        "gmail-sender": "latest"
     },
 }
