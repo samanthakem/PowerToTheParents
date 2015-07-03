@@ -57,7 +57,7 @@ function emailSender(to, subject, content, callback) {
         from: 'PowerToTheParents <'+user+'>',
         to: to['name'] + " <" + to['email'] + '>',
         subject: subject,
-        html: "<a href='http://192.168.0.40:3700'>Authorize</a>"
+        html: "<a href='http://192.168.2.2:3700'>Authorize</a>"
     };
 
     transporter.sendMail(mailOptions, callback);

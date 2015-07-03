@@ -8,7 +8,7 @@
     <title>Power To Parents</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <!-- Bootstrap -->
-    <link href="bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom -->
     <link href="css/style.css" rel="stylesheet">
@@ -46,9 +46,9 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
       <script>
-      var socket = io("http://192.168.0.40:3700")
+      var socket = io("http://192.168.2.2:3700");
       $("#yes").click(function() {
           socket.emit("yes", {button: 0});
       });

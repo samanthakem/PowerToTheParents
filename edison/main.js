@@ -1,6 +1,6 @@
 var mraa   = require('mraa'); //require mraa
 var socket = require('socket.io-client');
-var LCD    = require ('jsupm_i2clcd');
+//var LCD    = require ('jsupm_i2clcd');
 
 var serverIP = "http://192.168.2.2:3700";
 var io = socket(serverIP);
@@ -17,7 +17,7 @@ var delay = 100;
 
 
 var light = new mraa.Aio(0);
-var myLCD = new LCD.Jhd1313m1(6, 0x3E, 0x62);
+//var myLCD = new LCD.Jhd1313m1(6, 0x3E, 0x62);
 
 
 for(i=0;i<portRelay.length;i++){
@@ -57,7 +57,7 @@ io.on("off", function(msg) {
 
 function askPermission(button){
     console.log("Button pressed: "+button);
-    msgToUser(button);
+    //msgToUser(button);
     io.emit("request",{status:button});
     processingRequest = false;
     watchButton = setInterval(periodicActivity,delay);
