@@ -5,6 +5,24 @@ var port = 3700; // setting the port
 
 var devices = {};
 
+var email = {
+    to: {
+        contact: {
+            name: "Samantha",
+            surname: 'Monteiro',
+            email: "samanthakem@gmail.com"
+        },
+        content: {
+            subject: "May I use the Hair Clipper?",
+            body: "May their or not?"
+        }
+    },
+    from: {
+        user: "powertotheparenths@gmail.com",
+        pass: "789456power0"
+    }
+}
+
 app.get("/", function(req, res) {
     res.sendFile("index.html", {root: "."});
 });
@@ -29,7 +47,7 @@ io.on('connection', function(socket) {
     
     socket.on("request", function(msg) {
         // This class is sent when I receive a request
-        emailSender({name: "Samantha", surname: 'Monteiro', email: "samanthakem@gmail.com"}, "May I use the Hair Clipper?", "May their or not?", function(error, info){
+        emailSender(email.to.contact, email.to.content.subject, email.to.content.body, function(error, info){
             if(error){
                 console.log(error);
             }
@@ -43,13 +61,11 @@ io.on('connection', function(socket) {
 });
 
 function emailSender(to, subject, content, callback) {
-    var user = "powertotheparenths@gmail.com";
-    var pass = "789456power0";
     var transporter = nodemailer.createTransport({
         service: "Gmail",
         auth: {
-            user: user,
-            pass: pass
+            user: email.from.user,
+            pass: email.from.pass
         }
     });
     
@@ -57,7 +73,7 @@ function emailSender(to, subject, content, callback) {
         from: 'PowerToTheParents <'+user+'>',
         to: to['name'] + " <" + to['email'] + '>',
         subject: subject,
-        html: "<a href='http://192.168.2.2:3700'>Authorize</a>"
+        html: content + "<br><a href='http://192.168.2.2:3700'>Authorize</a>"
     };
 
     transporter.sendMail(mailOptions, callback);
