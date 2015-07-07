@@ -1,10 +1,14 @@
 var express = require("express"); // importing the express library
 var nodemailer = require('nodemailer');
 var app = express(); // Initializing the express
-var port = 3700; // setting the port
+
+// The IP and port where the scripts is runing
+var serverIP = "192.168.2.2";
+var port = 3700;
 
 var devices = {};
 
+// It set the email settings up
 var email = {
     to: {
         contact: {
@@ -73,7 +77,7 @@ function emailSender(to, subject, content, callback) {
         from: 'PowerToTheParents <'+user+'>',
         to: to['name'] + " <" + to['email'] + '>',
         subject: subject,
-        html: content + "<br><a href='http://192.168.2.2:3700'>Authorize</a>"
+        html: content + "<br><a href='http://"+serverIP+":"+port+"'>Authorize</a>"
     };
 
     transporter.sendMail(mailOptions, callback);
